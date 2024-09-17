@@ -7,5 +7,4 @@ Los archivos adjuntos son los siquientes:
 1. Informe LaTex
 2. AutoCAD dwg con diseño de ataguía
 3. Excel con tablas para calcular presiones de poros, gradientes hidráulicos y factores de seguridad
-4. Carpeta con imágenes
-5. Archivo tex con informe en LaTex
+4. Archivo tex con informe en LaTex
