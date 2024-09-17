@@ -1,0 +1,602 @@
+%NO MODIFICAR ESTA SECCION!
+\documentclass{article} % Define la clase del documento, en este caso, un artículo
+
+\usepackage[letterpaper,margin=3cm]{geometry} % Configura el tamaño del papel y los márgenes del documento
+\usepackage{graphicx} % Permite la inserción de imágenes
+\usepackage[spanish]{babel}% Activar esta configuración para informes en español, ajusta el idioma del documento
+\usepackage[usenames]{color} % Permite el uso de colores definidos por nombre en el documento
+\usepackage{hyperref} % Habilita enlaces y referencias dentro del documento
+\hypersetup{colorlinks=true, linkcolor = black, citecolor= black} % Configura el color de los enlaces y citas
+\usepackage{booktabs} % Proporciona comandos para crear tablas de alta calidad
+\usepackage{natbib} % Permite el uso de citas y referencias bibliográficas con diferentes estilos
+\usepackage{tikz} % Permite la creación de gráficos y diagramas vectoriales directamente en LaTeX
+\usepackage{float} % Para controlar la posición de los elementos flotantes, como imágenes, con la opción [H]
+\bibliographystyle{agsm} % Define el estilo de citas y bibliografía (en este caso, el estilo AGSM)
+\usepackage{diagbox} % Permite crear celdas con líneas diagonales en tablas
+\usepackage{listings} % Permite la inclusión y formateo de código fuente en el documento
+\usepackage{xcolor} % Paquete para definir y usar colores en el documento
+\usepackage{parskip} % Añade espacio entre párrafos en lugar de sangrías
+\usepackage{fancyhdr} % Permite personalizar encabezados y pies de página
+\usepackage{amsmath} % Proporciona una amplia variedad de entornos y comandos matemáticos
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{caption}
+\usepackage{amssymb} % Paquete para símbolos adicionales
+\usepackage{hyperref} % Paquete para enlaces
+\usepackage{ragged2e} 
+\usepackage{natbib} 
+\usepackage{multirow}
+
+\hypersetup{
+    colorlinks=true,    % Habilitar enlaces coloreados
+    linkcolor=black,    % Color de los enlaces internos (por ejemplo, referencias a secciones)
+    urlcolor=blue       % Color de los enlaces de tipo URL
+}
+
+% Definimos colores
+\definecolor{levelone}{RGB}{230, 230, 250}   % lavanda claro
+\definecolor{leveltwo}{RGB}{255, 228, 225}   % rosa claro
+\definecolor{levelthree}{RGB}{224, 255, 255} % cian claro
+\definecolor{levelfour}{RGB}{240, 255, 240}  % verde claro
+
+\newtcolorbox{highlightbox}[1][]{colback=#1, colframe=white, boxrule=0pt, arc=0pt, left=2pt, right=2pt, top=2pt, bottom=2pt}
+
+\pagestyle{fancy} % Usa el estilo fancyhdr
+\fancyhf{} % Borra todos los encabezados y pies de página
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt} % Desactiva la línea horizontal predeterminada en el pie
+\setlength{\headheight}{2cm} % Ajusta la altura del encabezado para hacer espacio para la línea
+\fancyhead[L]{\raisebox{0.20cm}{\textbf{Métodos Computacionales en OOCC}}} % Añade el texto en la parte izquierda del encabezado, subiéndolo ligeramente
+\fancyhead[R]{\raisebox{0.1cm}{\includegraphics[width=0.25\linewidth]{img/LOGO_UNIVERSIDAD.jpg}}} % Añade la imagen en la parte derecha del encabezado y súbela un poco
+\fancyhead[C]{\rule{\textwidth}{0.6pt}} % Añade una línea horizontal superior centrada
+\fancyfoot[C]{\rule{\textwidth}{0.6pt}} % Añade una línea horizontal en el pie de página centrada
+\fancyfoot[R]{\raisebox{-1.5\baselineskip}{\thepage}} % Coloca el número de página a la derecha, con suficiente espacio debajo de la línea
+\geometry{top=3cm, bottom=2.5cm} % Ajusta los márgenes superior e inferior
+
+% Definición de colores al estilo Visual Studio Code
+\definecolor{codegreen}{rgb}{0.25,0.49,0.48} % Comentarios
+\definecolor{codegray}{rgb}{0.5,0.5,0.5} % Números y anotaciones
+\definecolor{codepurple}{rgb}{0.58,0,0.82} % Palabras clave
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92} % Color de fondo
+
+% Configuración del estilo de las celdas de código
+\lstset{
+    backgroundcolor=\color{backcolour},   % color de fondo; necesita que el paquete color o xcolor esté cargado
+    commentstyle=\color{codegreen},       % estilo de comentarios
+    keywordstyle=\color{codepurple},      % estilo de palabras clave
+    numberstyle=\tiny\color{codegray},    % estilo de los números de línea
+    stringstyle=\color{red},              % estilo de las cadenas de texto
+    basicstyle=\ttfamily\small,           % estilo del texto básico
+    breakatwhitespace=false,              % ajustes de líneas sólo en espacios en blanco
+    breaklines=true,                      % ajustar las líneas si son muy largas
+    captionpos=b,                         % posición de la leyenda (abajo)
+    keepspaces=true,                      % preserva los espacios en el texto; útil si se usa monoespaciado
+    numbers=left,                         % dónde poner los números de línea
+    numbersep=5pt,                        % qué tan lejos están los números de línea del código
+    showspaces=false,                     % mostrar espacios con subrayados particulares; reemplaza 'showstringspaces'
+    showstringspaces=false,               % subrayar los espacios dentro de las cadenas solo
+    showtabs=false,                       % mostrar tabulaciones en el código con subrayados particulares
+    tabsize=2,                            % tamaños de tabulación a 2 espacios
+    language=TeX,                         % lenguaje del código
+    morecomment=[l]\#,                    % reconocer # como inicio de comentario en Python
+    frame=single,                         % agregar un marco simple alrededor del código
+    rulecolor=\color{black}               % color del marco
+}
+
+%Redefinir cosas
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
+
+\begin{document}
+%----------------------------------------------------------------------------------------
+%   PORTADA
+%Modificar desde aqui en adelante
+%----------------------------------------------------------------------------------------
+\begin{titlepage}%Inicio de la carátula, solo modificar los datos necesarios
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
+\center 
+%----------------------------------------------------------------------------------------
+%	ENCABEZADO
+%----------------------------------------------------------------------------------------
+\includegraphics[width=10cm]{img/LOGO_UNIVERSIDAD.jpg}\\ % Si esta plantilla se copio correctamente, va a llevar la imagen del logo de la facultad.OBS: Es necesario incluir el paquete: graphicx
+\vspace{3cm}
+%----------------------------------------------------------------------------------------
+%	SECCION DEL TITULO
+%----------------------------------------------------------------------------------------
+\HRule \\[0.4cm]
+{ \huge \bfseries Entrega P1E0}\\[0.4cm] % Titulo del documento
+{ \huge \bfseries Métodos Computacionales en OOCC, IOC 4201}\\[0.4cm] % Titulo del documento
+\HRule \\[1.5cm]
+ \vspace{5cm}
+%----------------------------------------------------------------------------------------
+%	SECCION DEL AUTOR
+%----------------------------------------------------------------------------------------
+\begin{flushright}
+    { \textbf{Profesor:} Patricio Moreno\\}
+\end{flushright}
+\vspace{0,2cm}
+
+\begin{flushright}
+    { \textbf{Ayudante:} Maximiliano Biasi\\}
+\end{flushright}
+\vspace{0,2cm}
+
+\begin{flushright}
+    { \textbf{Alumno:} Felipe Vicencio\\}
+\end{flushright}
+\vspace{2cm}
+%----------------------------------------------------------------------------------------
+%	SECCION DE LA FECHA
+%----------------------------------------------------------------------------------------
+{\large \textbf{\today}}\\[2cm] % El comando \today coloca la fecha del dia, y esto se actualiza con cada compilacion, en caso de querer tener una fecha estatica, reemplazar el \today por la fecha deseada
+\end{titlepage}
+%----------------------------------------------------------------------------------------
+%  INDICE
+%----------------------------------------------------------------------------------------
+\newpage
+\tableofcontents
+\thispagestyle{plain} % Deshabilita el encabezado en la página del índice
+\thispagestyle{empty} % Deshabilita el número de página en la página del índice
+\newpage
+
+%Se puede agregar un indice de figuras si es nesesario
+%\newpage
+%\listoffigures 
+%\thispagestyle{plain} % Deshabilita el encabezado en la página del índice %
+%\thispagestyle{empty}
+%\newpage
+%----------------------------------------------------------------------------------------
+%   ACÁ EMPIEZA EL INFORME
+\setcounter{page}{1} % Reinicia el contador de páginas
+%----------------------------------------------------------------------------------------
+%Este es el formato a seguir para los titulos de las secciones
+\section{Introducción}
+
+Hoy en dia, los proyectos de construcción estan siendo más innovadores
+y complejos, trabajando en ambientes hostiles y con características adversas.
+Dado esto, el análisis de los suelos es fundamental para el diseño de las
+estructuras, ya que permite conocer la resistencia de este, su composición y su
+comportamiento en el tiempo.\\
+
+El análisis de redes de flujo permite comprender el comportamiento 
+del agua subterránea y su interacción con las estructuras y el terreno.
+Es de suma importancia garantizar la estabilidad de taludes, prevenir la 
+erosión interna, diseñar sistemas de drenaje eficientes y prever asentamientos 
+en suelos saturados, ya que se quiere una construcción segura. Además, es clave 
+para mitigar impactos ambientales relacionados con la dispersión de 
+contaminantes en aguas subterráneas y para optimizar el diseño de cimentaciones.\\
+
+Así mismo, para construcciones que requieran ambientes secos, ya sea construcciones marítimas, presas, etc, 
+es de suma utilidad una ataguía. ''Es un recinto construido dentro o a través de un cuerpo de agua para permitir 
+que el área cerrada sea bombeada. Este bombeo crea un ambiente de trabajo seco para que el trabajo se pueda 
+realizar de forma segura." (Acerlum, ESC Group)\\
+
+En el presente informe, se abordará el estudio de flujos de agua por debajo de una ataguía,
+del cual se obtuvieron resultados de presiones de poros, caudales y gradientes hidráulicos críticos
+para diferentes dimensiones de niveles freáticos.
+
+\newpage
+
+\section{Descripción del problema}
+
+Este proyecto implica conducir el análisis de una ataguía de tablestaca que será utilizada en una construcción en un sector costero, suelo tipo arena, con condiciones de altura de agua y profundidad de excavación para tres casos. La Figura 1 muestra la mitad de la ataguía con dimensiones generales, cuyas longitudes específicas son aquellas detalladas en la Tabla 1 para los tres casos a analizar.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/i1.png}
+    \caption*{\textbf{Figura 1:} Figura esquemática de la ataguía de tablestaca. Las distancias están definidas con las letras a, b, c y d, en donde los subíndices 1 y 2 indican fuera y dentro de la ataguía respectivamente.}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/i2.png}
+    \caption*{\textbf{Figura 2:} Puntos de interés A - H para el cálculo de presiones de poro y netas en la ataguía.}
+\end{figure}
+
+El esquema de la Figura 1 solo muestra la mitad del sistema de retención de tierra, en dónde es posible identificar las alturas de agua dentro y fuera de la zona de construcción, las profundidades de la capa de suelo permeable (dentro y fuera de la ataguía), la profundidad de la capa impermeable y localización de la ataguía. Para el análisis es necesario resolver 3 casos, en los que las alturas de agua y profundidades de suelo para cada caso se encuentran detalladas en la Tabla 1.
+
+\begin{figure}[htbp]
+    \centering
+    \caption*{\textbf{Tabla 1:} Información de longitudes a aplicar en casos 1, 2 y 3 de la Figura 1}
+    \includegraphics[width=0.5\textwidth]{img/i3.png}
+\end{figure}
+
+\newpage
+
+Para el análisis preliminar se van a utilizar las siguientes expresiones:
+
+\begin{itemize}
+    \item Gradiente hidráulico: $i = \frac{\Delta h}{L}$
+    \item Gradiente hidráulico crítico: $i_c = \frac{\gamma'}{\gamma_w}$
+    \item Ley de Darcy: $q = kiA$
+    \item Ecuación de Bernoulli: $h = z + \frac{p}{\gamma_w} + \frac{v^2}{2g}$
+    \item Factor de Seguridad: $FS = \frac{W'}{i \times \gamma_w} = \frac{\gamma_{sub}}{i \times \gamma_w} = \frac{\gamma_{sat} - \gamma_w}{i \times \gamma_w}$\\
+\end{itemize}
+
+En donde $i$ corresponde al gradiente hidráulico, $\Delta h$ es la pérdida de carga entre dos puntos con altura de carga $h_1$ y $h_2$, $L$ es la distancia que recorre el fluido entre los puntos de pérdida de carga, $q$ representa al flujo volumétrico, $k$ corresponde al coeficiente de permeabilidad de Darcy, $A$ es el área transversal por la que fluye el líquido, $p$ es la presión en un punto del espacio, $\gamma_w$ corresponde al peso específico del agua (water), $\gamma_{sat}$ corresponde al peso específico del suelo saturado con fluido, $v$ es la velocidad del fluido en un punto del espacio, $g$ indica el valor de la aceleración de gravedad, $W'$ representa la fuerza hacia abajo, el producto $i \times \gamma_w$ representa la fuerza hacia arriba (uplift) que genera la infiltración dentro del terreno de la ataguía, y finalmente $\gamma_{sub} = \gamma_{sat} - \gamma_w$ corresponde al peso sumergido del suelo.
+
+\textbf{Para todos los cálculos utilizar:}
+
+\begin{flushleft}
+    $\gamma_w = 9810 \, \frac{N}{m^3}$ \\
+    $\gamma_{sat} = 21000 \, \frac{N}{m^3}$ \\
+    $k = 6.9 \times 10^{-5} \, \frac{m}{s}$ \\
+\end{flushleft}
+
+Utilizar las ecuaciones capítulo 14 del libro \textit{Soil Mechanics and Foundations} disponible en CANVAS, para poder interpretar las ecuaciones antes descritas con el análisis de redes de flujo que van a realizar.
+
+\vspace{0.5cm}
+
+\textbf{Para dibujar las redes de flujo utilizar:}
+
+\begin{itemize}
+    \item Escala 1:200
+    \item Graph paper tamaño A4 de 5 mm (se puede imprimir de internet, por ejemplo: \href{https://print-graph-paper.com/details/5mm}{LINK}) o trabajarlo de manera equivalente en formato digital.
+    \item Tres líneas de flujo
+    \item Utilizar sección 4 \textbf{FLOWNET SKETCHING} del capítulo 14 del libro \textit{Soil Mechanics and Foundations} disponible en CANVAS.\\
+\end{itemize}
+
+Para los tres casos que aparecen en la \textbf{Tabla 1} se requiere realizar un análisis utilizando redes de flujo (Flownet analysis), para poder responder los siguientes aspectos de la ingeniería:
+
+\begin{enumerate}
+    \item \textbf{Redes de flujo:} Dibujar redes de flujo de cada uno de los casos. Entregar los tres esquemas. Utilizar estos esquemas para resolver 2-7.
+    \item \textbf{Caudal de infiltración:} Caudal de infiltración en la ataguía (en $\frac{m^3}{dia}$) para cada caso. Mostrar los cálculos y resumir resultados en una tabla.
+    \item \textbf{Presiones de poro:} Calcular las presiones de poro producidas por el agua en los puntos A – H (ver Figura 2). Mostrar desarrollo de todos los cálculos y entregar una tabla resumen con las presiones en cada punto.
+    \item \textbf{Presiones netas en ataguía:} Calcular las presiones de poro netas producidas por el agua, que afectan a la ataguía en los puntos señalados en la pregunta anterior. Dibujar perfil de presiones netas en la ataguía utilizando esquema de la Figura 2. \textbf{HINT:} Por ejemplo, entre los puntos C y H se restan las presiones por lo que la ataguía recibe una presión neta de poros de $p_C - p_H$. Presentar resultados en una tabla resumen.
+    \item \textbf{Máximo gradiente hidráulico:} Calcular el máximo gradiente hidráulico utilizando redes de flujo. \textbf{HINT:} Esta estimación se realiza al examinar el segmento más corto de la red de flujos.
+    \item \textbf{Falla por licuefacción:} Calcular, para cada caso, si el diseño de la ataguía falla por licuefacción, comparando el gradiente hidráulico crítico con el máximo gradiente hidráulico. Mostrar cálculos para cada caso y luego resumir los resultados en una tabla.
+    \item \textbf{Factor de seguridad:} Calcular el factor de seguridad para cada uno de los casos. Mostrar los cálculos y luego resumir los resultados en una tabla.
+\end{enumerate}
+
+\newpage
+
+\section{Ecuaciones} \label{ecuaciones}
+
+A continuación, se presentan las ecuaciones utilizadas para el desarrollo de los cálculos y obtención de resultados. (Budhu, Muni, 2011)
+
+\begin{itemize}
+\item Ecuaciones de energía
+\begin{equation}
+    H_t = H_0 - \Delta H
+\end{equation}
+
+\begin{equation}
+    \Delta H_i = \frac{\Delta H_t}{n_p} \times n_i
+\end{equation}
+
+\begin{equation}
+    H_i = H_0 - \Delta H_i
+\end{equation}
+
+\item Ecuación de Bernoulli
+\begin{equation}
+    H_t = z_g + \frac{u_w}{\gamma_w}
+\end{equation}
+
+\item Presión de poros
+\begin{equation}
+    u_w = (H_i - z_g) \times \gamma_w
+\end{equation}
+
+\item Ley de Darcy
+\begin{equation}
+    Q = k \frac{\Delta H}{n_p} n_s
+    \label{eq:ley_darcy}
+\end{equation}
+
+\item Gradiente hidráulico máximo
+\begin{equation}
+    i = \frac{\Delta H}{L_{min}}
+    \label{eq:gradiente_hidraulico}
+\end{equation}
+
+\item Gradiente hidráulico crítico
+\begin{equation}
+    i_{crit} = \frac{\gamma'}{\gamma_w} = \frac{\gamma_{sat} - \gamma_w}{\gamma_w}
+    \label{eq:gradiente_critico}
+\end{equation}
+
+\item Factor de seguridad
+\begin{equation}
+    FS = \frac{\gamma_{sat} - \gamma_w}{i \times \gamma_w}
+    \label{eq:factor_seguridad}
+\end{equation}
+
+\end{itemize}
+
+\newpage
+
+\section{Resultados y Análisis}
+
+En esta sección se presentan tablas y figuras con los resultados obtenidos. Además, se muestran análisis y detalles de cómo se llegaron a estos.\\
+
+Para el análisis de los 3 casos, se definieron equipotenciales $n_p = 5$ y líneas de flujo $n_s = 4$.
+
+\subsection{Redes de Flujo}
+
+A continuación, las Figuras 1, 2 y 3 presentan los diagramas de redes de flujo para los tres casos estudiados.
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/Caso1.jpg}
+        \caption{Diagrama de flujo - Caso 1}
+        \label{fig:imagen1}
+    \end{minipage}\hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/Caso2.jpg}
+        \caption{Diagrama de flujo - Caso 2}
+        \label{fig:imagen2}
+    \end{minipage}\hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/Caso3.jpg}
+        \caption{Diagrama de flujo - Caso 3}
+        \label{fig:imagen3}
+    \end{minipage}
+\end{figure}
+
+Estos estan dibujados en papel tamaño A4 de 5 mm con escala 1:200. Además, cabe mencionar que fueron diseñados en AutoCAD.
+
+\subsection{Caudal de Infiltración}
+
+La Tabla 1 muestra los caudales de infiltración para cada caso, calculados utilizando la ecuación \ref{eq:ley_darcy}
+
+\begin{table}[h!]
+    \centering
+    \caption{Caudales de Infiltración}
+    \begin{tabular}{|c|c|}
+      \hline
+      Caso & $Q_i (\frac{m^3}{dia})$ \\
+      \hline
+      Caso 1 & 43,88 \\
+      \hline
+      Caso 2 & 32,43 \\
+      \hline
+      Caso 3 & 25,75 \\
+      \hline
+    \end{tabular}
+    \footnotesize \\\ Fuente: elaboración propia.
+    \label{tab1}
+\end{table}
+
+Los resultados expuestos muestran una relación directa con la profundidad de la tablestaca y el caudal de flujo, siendo menor a medida que la profundidad de esta aumenta.
+
+\newpage
+
+\subsection{Presiones de Poro}
+
+La Tabla 2 muestra las presiones de poro en los puntos A - H para cada caso. Las tablas resumen con los calculos detallados se encuentra en la Sección \ref{anexos}.
+
+\begin{table}[h!]
+    \centering
+    \caption{Presiones de poro $(kPa)$ para los puntos A - H}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+      \hline
+      Punto & Caso 1 & Caso 2 & Caso 3 \\
+      \hline
+      A & 0 & 0 & 0 \\
+      \hline
+      B & 37,28 & 37,28 & 37,28 \\
+      \hline
+      C & 80,05 & 61,21 & 50,23 \\
+      \hline
+      D & 91,43 & 77,30 & 49,44 \\
+      \hline
+      E & 73,38 & 87,51 & 95,75 \\
+      \hline
+      F & 55,33 & 74,16 & 85,15 \\
+      \hline
+      G & 29,43 & 29,43 & 9,81 \\
+      \hline
+      H & 0 & 0 & 0 \\
+      \hline
+    \end{tabular}
+    \footnotesize \\\ Fuente: elaboración propia.
+    \label{tab2}
+\end{table}
+
+Junto con la tabla, se presentan los perfiles de presiones de poro en la Figura 4, 5 y 6.
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/caso1-poros.png}
+        \caption{Perfil de presiones - Caso 1}
+        \label{fig:imagen4}
+    \end{minipage}\hfill
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/caso2-poros.png}
+        \caption{Perfil de presiones - Caso 2}
+        \label{fig:imagen5}
+    \end{minipage}\hfill
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/caso3-poros.png}
+        \caption{Perfil de presiones - Caso 3}
+        \label{fig:imagen6}
+    \end{minipage}
+\end{figure}
+
+\vspace{2cm}
+
+\subsection{Presiones Netas en Ataguía}
+
+En la Tabla 3 se presentan las presiones netas en la ataguía para los puntos A - H. Además, se muestran los perfiles de presiones neta en las Figuras 7, 8 y 9.
+
+\begin{table}[h!]
+    \centering
+    \caption{Presiones netas en la ataguía $(kPa)$ para los puntos A - H}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+      \hline
+      Punto & Caso 1 & Caso 2 & Caso 3 \\
+      \hline
+      A & 0 & 0 & 0 \\
+      \hline
+      B & 37,28 & 37,28 & 37,28 \\
+      \hline
+      C & 42,77 & 23,94 & 12,95 \\
+      \hline
+      D & 11,38 & 16,09 & -0,78 \\
+      \hline
+      E & -18,05 & 10,20 & 46,30 \\
+      \hline
+      F & -18,05 & -13,34 & -10,59 \\
+      \hline
+      G & -25,90 & -44,73 & -75,34 \\
+      \hline
+      H & -29,43 & -29,43 & -9,81 \\
+      \hline
+    \end{tabular}
+    \footnotesize \\\ Fuente: elaboración propia.
+    \label{tab3}
+\end{table}
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/caso1-neta.png}
+        \caption{Perfil de presiones - Caso 1}
+        \label{fig:imagen7}
+    \end{minipage}\hfill
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/caso2-neta.png}
+        \caption{Perfil de presiones - Caso 2}
+        \label{fig:imagen8}
+    \end{minipage}\hfill
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/caso3-neta.png}
+        \caption{Perfil de presiones - Caso 3}
+        \label{fig:imagen9}
+    \end{minipage}
+\end{figure}
+
+\vspace{3cm}
+
+\subsection{Máximo gradiente hidráulico, gradiente crítico y falla por licuefacción}
+
+La Tabla 4 muestra los máximos gradientes hidráulicos para los tres casos estudiados, junto con el gradiente hidráulico crítico. Se utilizaron las ecuaciones \ref{eq:gradiente_hidraulico} y \ref{eq:gradiente_critico}, respectivamente, para su cálculo.
+
+\begin{table}[h!]
+    \centering
+    \caption{Máximo Gradiente Hidráulico}
+    \begin{tabular}{|c|c|c|}
+      \hline
+      Caso & $i_{max}$ & \multicolumn{1}{c|}{$i_{crit}$} \\ % Nueva columna con título
+      \hline
+      Caso 1 & 1,095 & \multirow{3}{*}{1,141} \\ % Primera fila de la tabla
+      Caso 2 & 0,629 &  \\ % Segunda fila de la tabla
+      Caso 3 & 0,380 &  \\ % Tercera fila de la tabla
+      \hline
+    \end{tabular}
+    \footnotesize \\\ Fuente: elaboración propia.
+    \label{tab4}
+\end{table}
+
+Como se puede observar de la tabla anterior, ninguno de los 3 casos presenta falla por licuefacción, ya que para que este fenómeno ocurra se debe cumplir que $i_{crit}>i_{max}$
+
+\subsection{Factor de Seguridad}
+
+La siguiente Tabla 5 muestra los factores de seguridad de la ataguía, teniendo en cuenta las 3 condiciones distintas de operación. Los cálculos se realizaron utilizando la ecuación \ref{eq:factor_seguridad}.
+
+\begin{table}[h!]
+    \centering
+    \caption{Factores de Seguridad}
+    \begin{tabular}{|c|c|c|c|}
+      \hline
+      Caso & $FS$ \\
+      \hline
+      Caso 1 & 1,04 \\
+      \hline
+      Caso 2 & 1,81 \\
+      \hline
+      Caso 3 & 2,99 \\
+      \hline
+    \end{tabular}
+    \footnotesize \\\ Fuente: elaboración propia.
+    \label{tab5}
+\end{table}
+
+Analizando estos resultados, se puede concluir que todos los casos presentan un factor de seguridad mayor a 1, lo que indica que la ataguía es estable y no presenta riesgo de falla.
+
+\subsection{Análisis de Resultados}
+
+Teniendo en cuenta los resultados entregados anteriormente, se puede decir que la ataguía es relativamente estable en los 3 casos, ya que $FS > 1$ y $i_{crit} > i_{max}$, impidiendo fallas por licuefacción. Sumado a esto, se nota que el $FS$ aumenta con la profundidad de la tablestaca, indicando mayor estabilidad con una mayor profundidad. Además, se observa que a medida que la profundidad de la tablestaca aumenta, el caudal de infiltración disminuye, lo que se traduce en una menor presión de poros en la mayoría del área de la tablestaca y una mayor presión neta media en la ataguía, lo que se refleja en las Figuras \ref{fig:imagen7}, \ref{fig:imagen8} y \ref{fig:imagen9}.\\
+Así mismo, en las figuras \ref{fig:imagen4}, \ref{fig:imagen5} y \ref{fig:imagen6} se puede observar que la distribución de presiones de poro es más homogénea en el caso 3, por lo que, si se llegara a realizar un análisis más detallado de estabilidad y momento, resultaría preciso decir que la tablestaca es más estable en este caso.
+
+\newpage
+
+\section{Conclusiones}
+
+En este informe se ha realizado un análisis de redes de flujo para una ataguía de tablestaca en un sector costero, con suelo tipo arena y condiciones de altura de agua y profundidad de excavación para tres casos. Se obtuvieron resultados de presiones de poros, caudales y gradientes hidráulicos críticos para diferentes dimensiones de niveles freáticos.\\
+
+Los resultados concluyeron que la ataguía estudiada es estable para los 3 casos, sin embargo, para los dos primeros se notó una presión de poros alta en comparación al tercer caso, que se puede cuantificar por el $FS$ obtenido. Además, se observó que el caudal de infiltración disminuye con la profundidad de la tablestaca, lo que se traduce en una menor presión de poros y una mayor presión neta en la ataguía.\\
+
+Finalmente, se puede decir que el análisis de la ataguía fue exitoso, ya que se determinaron las presiones de poros y gradientes hidraulicos máximos y críticos, junto con el factor de seguridad para cada caso.
+
+\newpage
+
+\section{Referencias}
+
+\begin{itemize}
+    \item Budhu, M. (2011). Soil Mechanics and Foundations. John Wiley \& Sons.\\
+    Disponible en: \url{https://acortar.link/ytajaR}
+    \\
+    Consultado: 15-09-2024\\
+    \item Acerlum, ESC Group. Proveedor Internacional de Tablestacas de Acero de Alta Calidad, Pilotes de tuberías, Mobiliario Marino y Estructuras de Acero en Mexico.\\
+    Disponible en: \url{https://encr.pw/oEYsH}
+    \\
+    Consultado: 15-09-2024
+\end{itemize}
+
+\newpage
+
+\section{Anexos} \label{anexos}
+
+En esta sección se presentarán los cálculos detallados de las presiones de poro y netas en la ataguía para los puntos A - H, junto con los caudales de infiltración, gradientes hidraulicos y factores de seguridad. Todo se realizó en Excel usando las ecuaciones presentadas en la Sección \ref{ecuaciones}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/tabla1.png}
+    \caption{Cálculos detallados - Caso 1}
+    \caption*{Fuente: Elaboración propia.}
+    \label{fig:tabla1}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/tabla2.png}
+    \caption{Cálculos detallados - Caso 2}
+    \caption*{Fuente: Elaboración propia.}
+    \label{fig:tabla2}
+\end{figure}
+
+\newpage
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/tabla3.png}
+    \caption{Cálculos detallados - Caso 3}
+    \caption*{Fuente: Elaboración propia.}
+    \label{fig:tabla3}
+\end{figure}
+
+\end{document}
+
+
+
+
